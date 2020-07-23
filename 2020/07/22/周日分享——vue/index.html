@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 爱吃蒸鱼の猫</title>
+  <title>周日分享——Vue | 爱吃蒸鱼の猫</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="爱吃蒸鱼の猫">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="Dian 团队周日前端技术分享：Vue 核心源码概述和 Vue3.0 特性概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="周日分享——Vue">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/%E5%91%A8%E6%97%A5%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94vue/index.html">
 <meta property="og:site_name" content="爱吃蒸鱼の猫">
+<meta property="og:description" content="Dian 团队周日前端技术分享：Vue 核心源码概述和 Vue3.0 特性概述">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/07/22/%E5%91%A8%E6%97%A5%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94vue/observer_car.png">
+<meta property="article:published_time" content="2020-07-22T09:11:15.000Z">
+<meta property="article:modified_time" content="2020-07-23T08:59:00.032Z">
 <meta property="article:author" content="Cherrifish">
+<meta property="article:tag" content="Web前端">
+<meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/22/%E5%91%A8%E6%97%A5%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94vue/observer_car.png">
   
     <link rel="alternative" href="/atom.xml" title="爱吃蒸鱼の猫" type="application/atom+xml">
   
@@ -150,36 +158,103 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-周日分享——vue" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/22/%E5%91%A8%E6%97%A5%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94vue/" class="archive-article-date">
-  	<time datetime="2020-07-22T09:11:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/22/%E5%91%A8%E6%97%A5%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94vue/">周日分享——Vue</a>
+    <h1 class="article-title" itemprop="name">
+      周日分享——Vue
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/07/22/%E5%91%A8%E6%97%A5%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94vue/" class="archive-article-date">
+  	<time datetime="2020-07-22T09:11:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Dian 团队周日前端技术分享：Vue 核心源码概述和 Vue3.0 特性概述</p>
+<a id="more"></a>
+
+<h2 id="一、Vue-2-6-11-源码解析"><a href="#一、Vue-2-6-11-源码解析" class="headerlink" title="一、Vue 2.6.11 源码解析"></a>一、Vue 2.6.11 源码解析</h2><h3 id="1-变化侦测"><a href="#1-变化侦测" class="headerlink" title="1. 变化侦测"></a>1. 变化侦测</h3><p>特性：数据驱动视图——输入 state（数据），输出 UI（视图）；UI 随 state 同步变化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI &#x3D; render(state)</span><br></pre></td></tr></table></figure>
+
+<p>不同的框架有不同的变化侦测机制：Angular 通过脏值检查流程、React 通过对比虚拟 DOM、Vue 通过</p>
+<h4 id="1-1-Object-的变化侦测"><a href="#1-1-Object-的变化侦测" class="headerlink" title="1.1 Object 的变化侦测"></a>1.1 Object 的变化侦测</h4><h5 id="1-1-1-使-Object-的属性可观测-——-Object-defineProperty-方法"><a href="#1-1-1-使-Object-的属性可观测-——-Object-defineProperty-方法" class="headerlink" title="1.1.1 使 Object 的属性可观测 —— Object.defineProperty 方法"></a>1.1.1 使 Object 的属性可观测 —— Object.defineProperty 方法</h5><p>作用：直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。通过自定义 Setters 和 Getters 实现对属性变化的追踪。</p>
+<p>实例：<br/></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> car = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> val = <span class="number">3000</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(car, <span class="string">'price'</span>, &#123;</span><br><span class="line">  <span class="comment">//定义对象的属性可以在 for...in 循环和 Object.keys() 中被枚举。</span></span><br><span class="line">  enumerable: <span class="literal">true</span>,                     </span><br><span class="line">  <span class="comment">//定义对象的属性可以被删除，且除 value 和 writable 特性外的其他特性可以被修改</span></span><br><span class="line">  configurable: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">//每次读取和修改数据时都会打印 log</span></span><br><span class="line">  <span class="keyword">get</span>()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'price属性被读取了'</span>)</span><br><span class="line">    <span class="keyword">return</span> val</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span>(newVal)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'price属性被修改了'</span>)</span><br><span class="line">    val = newVal</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>通过 Object.defineProperty 方法，每次对 car 这个对象中的 ‘price’ 属性进行的读写操作都能够被追踪到。下面来看源码 (注释有 1.1.2 的地方可以忽略，下一节会提到)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源码位置：src/core/observer/index.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Observer类会通过递归的方式把一个对象的所有属性都转化成可观测对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (value) &#123;</span><br><span class="line">    <span class="keyword">this</span>.value = value       <span class="comment">// 实例对象的 value 属性引用了数据对象</span></span><br><span class="line">    <span class="comment">// 给value新增一个__ob__属性，值为该value的Observer实例</span></span><br><span class="line">    <span class="comment">// 相当于为value打上标记，表示它已经被转化成响应式了，避免重复操作</span></span><br><span class="line">    def(value,<span class="string">'__ob__'</span>,<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(value)) &#123;</span><br><span class="line">      <span class="comment">// 当value为数组时的逻辑</span></span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.walk(value)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  walk (obj: <span class="built_in">Object</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> keys = <span class="built_in">Object</span>.keys(obj)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; keys.length; i++) &#123;</span><br><span class="line">      defineReactive(obj, keys[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使一个对象转化成可观测对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123; Object &#125;</span> </span>obj 对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123; String &#125;</span> </span>key 对象的key</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123; Any &#125;</span> </span>val 对象的某个key的值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span> (<span class="params">obj,key,val</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 如果只传了obj和key，那么val = obj[key]</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">arguments</span>.length === <span class="number">2</span>) &#123;</span><br><span class="line">    val = obj[key]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> val === <span class="string">'object'</span>)&#123;</span><br><span class="line">      <span class="keyword">new</span> Observer(val)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> dep = <span class="keyword">new</span> Dep()  <span class="comment">// 实例化一个依赖管理器，生成一个依赖管理数组dep (1.1.2)</span></span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">    enumerable: <span class="literal">true</span>,</span><br><span class="line">    configurable: <span class="literal">true</span>,</span><br><span class="line">    <span class="keyword">get</span>()&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>属性被读取了`</span>);</span><br><span class="line">      dep.depend()    <span class="comment">// 在getter中收集依赖 (1.1.2)</span></span><br><span class="line">      <span class="keyword">return</span> val;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(newVal)&#123;</span><br><span class="line">      <span class="keyword">if</span>(val === newVal)&#123;</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>属性被修改了`</span>);</span><br><span class="line">      val = newVal;</span><br><span class="line">      dep.notify()   <span class="comment">// 在setter中通知依赖更新 (1.1.2)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">def</span>(<span class="params">obj, key, val, enumerable</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">		value: val,</span><br><span class="line">		enumerable: !!enumerable,</span><br><span class="line">		writable: <span class="literal">true</span>,</span><br><span class="line">		configurable: <span class="literal">true</span></span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>应用：定义属性可观测的对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> car = <span class="keyword">new</span> Observer(&#123;</span><br><span class="line">  <span class="string">'brand'</span>:<span class="string">'BMW'</span>,</span><br><span class="line">  <span class="string">'price'</span>:<span class="number">3000</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>流程：<br/></p>
+<ol>
+<li>Observer 实例将 value 属性与传入的 car 对象相关联</li>
+<li>def 函数给传入的 car 对象增加一个名为 “__ ob __ “ 的属性，这个属性的值为接收 car 对象的 Observer 实例本身。因此，当 car 获得 “__ ob __ “ 属性的同时，Observer 实例的 value 属性对应的对象也会获得  属性。简言之，def 函数通过将实例的属性与实例本身相关联，它的 “__ ob __ “ 属性变成了一个无限层 “__ ob __” 属性相嵌套的实例。上图：<br><img src="observer_car.png" alt=""></li>
+<li>对 car 对象的除了 “__ ob __ “ 以外的每一个属性执行 defineReactive 函数，自定义它们的 getter 和 setter 以实现追踪。若这个属性对应的值本身也是一个对象，则对这个对象再次执行流程 1~3 的步骤 (相当于再对这个对象进行和 “car” 相同的操作)。</li>
+</ol>
+<p>注意：<br/></p>
+<ol>
+<li>对象直接进行赋值进行的是浅拷贝，指向的是同一块内存区域，因此二者会同步变化。</li>
+<li>添加的 “__ ob __ “ 属性是不可遍历的，在 walk 函数中不会被 Object.keys 遍历到。</li>
+<li>当一个对象被传入到 Observer 中，这个对象的所有属性 (包括子属性) 都会被观测到，这个对象就变成了 <strong>可观测的、响应式的</strong>。</li>
+</ol>
+<p>补充说明：<br/></p>
+<ol>
+<li>数组与对象的引用和覆盖：<br/><br>引用 —— 两个变量指向同一片内存区域，一个发生变化的时候，另一个也会同步变化。<br/><br>覆盖 —— 两个变量指向两片互不影响的内存区域。</li>
+<li>数组与对象的常见深拷贝方式：<br/><br>数组： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当数组里面的值是基本数据类型，比如String，Number，Boolean时，属于深拷贝</span></span><br><span class="line"><span class="comment">// 当数组里面的值是引用数据类型，比如Object，Array时，属于浅拷贝</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 法一：利用 concat</span></span><br><span class="line"><span class="keyword">var</span> arr2 = arr1.concat();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 法二：利用 slice</span></span><br><span class="line"><span class="keyword">var</span> arr2 = arr1.slice();</span><br></pre></td></tr></table></figure>
+ 对象： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 法一：通过 JSON 对象</span></span><br><span class="line"><span class="comment">// 缺点：无法拷贝函数，会变成 undefined</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone2</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _obj = <span class="built_in">JSON</span>.stringify(obj),</span><br><span class="line">  objClone = <span class="built_in">JSON</span>.parse(_obj);</span><br><span class="line">  <span class="keyword">return</span> objClone;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 法二：通过 Object.assign 方法将 obj 赋值给空对象</span></span><br><span class="line"><span class="comment">// 缺点：仅对基本数据类型深拷贝</span></span><br><span class="line"><span class="keyword">var</span> obj1 = <span class="built_in">Object</span>.assign(&#123;&#125;, obj);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 法三：lodash 函数库实现深拷贝</span></span><br><span class="line"><span class="comment">// 缺点：拷贝复杂的对象可能会报错，如拷贝 Vue 实例。一般复杂的对象都会内置拷贝方法，比如 Vue.extend()。</span></span><br><span class="line"><span class="keyword">let</span> result = _.cloneDeep(test)</span><br></pre></td></tr></table></figure>
+ 详情可参考：js浅拷贝与深拷贝的区别和实现方式 <a href="https://www.jianshu.com/p/1c142ec2ca45" target="_blank" rel="noopener">https://www.jianshu.com/p/1c142ec2ca45</a></li>
+</ol>
+<p>疑问：<br/></p>
+<ol>
+<li>添加属性 “__ ob __ “ 的作用是什么 ？</li>
+<li>为什么属性 “__ ob __ “ 要设定为 “无限套娃” 的形式 ？</li>
+</ol>
+<h5 id="1-1-2-依赖收集-Deps-——-哪个视图”依赖”了这个数据-？"><a href="#1-1-2-依赖收集-Deps-——-哪个视图”依赖”了这个数据-？" class="headerlink" title="1.1.2 依赖收集(Deps) —— 哪个视图”依赖”了这个数据 ？"></a>1.1.2 依赖收集(Deps) —— 哪个视图”依赖”了这个数据 ？</h5><p>怎么收集？ —— 在 getter 中收集依赖，在 setter 中通知依赖更新。<br/><br>收集到哪？—— 为每一个数据都建立一个依赖管理器： Dep 类。<br/><br>谁来依赖？ —— 由 Watcher 类完成数据和视图之间的信息传递。</p>
+<h6 id="1-1-2-1-依赖管理器源码部分："><a href="#1-1-2-1-依赖管理器源码部分：" class="headerlink" title="1.1.2.1 依赖管理器源码部分："></a>1.1.2.1 依赖管理器源码部分：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 源码位置：src/core/observer/dep.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;</span><br><span class="line">    <span class="keyword">this</span>.subs = []              <span class="comment">// 用于存放依赖</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addSub (sub) &#123;</span><br><span class="line">    <span class="keyword">this</span>.subs.push(sub)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 删除一个依赖</span></span><br><span class="line">  removeSub (sub) &#123;</span><br><span class="line">    remove(<span class="keyword">this</span>.subs, sub)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 添加一个依赖</span></span><br><span class="line">  depend () &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.target) &#123;</span><br><span class="line">      <span class="keyword">this</span>.addSub(<span class="built_in">window</span>.target)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 通知所有依赖更新</span></span><br><span class="line">  notify () &#123;</span><br><span class="line">    <span class="keyword">const</span> subs = <span class="keyword">this</span>.subs.slice()      <span class="comment">// 避免浅拷贝造成的两个变量相互影响</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = subs.length; i &lt; l; i++) &#123;</span><br><span class="line">      subs[i].update()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Remove an item from an array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">remove</span> (<span class="params">arr, item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (arr.length) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = arr.indexOf(item)</span><br><span class="line">    <span class="keyword">if</span> (index &gt; <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> arr.splice(index, <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改 getter 和 setter，让这两个过程中执行收集依赖和更新依赖。即在上一小节的 defineReactive 函数中添加上注释有 (1.1.2) 的代码。</p>
+<h6 id="1-1-2-2-Watcher-类"><a href="#1-1-2-2-Watcher-类" class="headerlink" title="1.1.2.2 Watcher 类"></a>1.1.2.2 Watcher 类</h6><p>谁用到了数据，谁就是依赖，我们就为谁创建一个Watcher实例。在之后数据变化时，我们不直接去通知依赖更新，而是通知依赖对应的 Watcher 实例，由 Watcher 实例去通知真正的视图。</p>
+<p>源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Watcher</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (vm,expOrFn,cb) &#123;</span><br><span class="line">    <span class="keyword">this</span>.vm = vm;</span><br><span class="line">    <span class="keyword">this</span>.cb = cb;</span><br><span class="line">    <span class="keyword">this</span>.getter = parsePath(expOrFn)</span><br><span class="line">    <span class="keyword">this</span>.value = <span class="keyword">this</span>.get()</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span> () &#123;</span><br><span class="line">    <span class="built_in">window</span>.target = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">const</span> vm = <span class="keyword">this</span>.vm</span><br><span class="line">    <span class="keyword">let</span> value = <span class="keyword">this</span>.getter.call(vm, vm)</span><br><span class="line">    <span class="built_in">window</span>.target = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line">  update () &#123;</span><br><span class="line">    <span class="keyword">const</span> oldValue = <span class="keyword">this</span>.value</span><br><span class="line">    <span class="keyword">this</span>.value = <span class="keyword">this</span>.get()</span><br><span class="line">    <span class="keyword">this</span>.cb.call(<span class="keyword">this</span>.vm, <span class="keyword">this</span>.value, oldValue)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Parse simple path.</span></span><br><span class="line"><span class="comment"> * 把一个形如'data.a.b.c'的字符串路径所表示的值，从真实的data对象中取出来</span></span><br><span class="line"><span class="comment"> * 例如：</span></span><br><span class="line"><span class="comment"> * data = &#123;a:&#123;b:&#123;c:2&#125;&#125;&#125;</span></span><br><span class="line"><span class="comment"> * parsePath('a.b.c')(data)  // 2</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> bailRE = <span class="regexp">/[^\w.$]/</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">parsePath</span> (<span class="params">path</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (bailRE.test(path)) &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> segments = path.split(<span class="string">'.'</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; segments.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!obj) <span class="keyword">return</span></span><br><span class="line">      obj = obj[segments[i]]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃小鱼干<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,7 +270,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -212,97 +287,117 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/07/22/%E5%91%A8%E6%97%A5%E5%88%86%E4%BA%AB%E2%80%94%E2%80%94vue/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2020-07-21T08:13:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的第一篇博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/21/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">test</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo/test//" class="article-tag-list-link color5">test</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、Vue-2-6-11-源码解析"><span class="toc-number">1.</span> <span class="toc-text">一、Vue 2.6.11 源码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-变化侦测"><span class="toc-number">1.1.</span> <span class="toc-text">1. 变化侦测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-Object-的变化侦测"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 Object 的变化侦测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-1-使-Object-的属性可观测-——-Object-defineProperty-方法"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1.1 使 Object 的属性可观测 —— Object.defineProperty 方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1-2-依赖收集-Deps-——-哪个视图”依赖”了这个数据-？"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.1.2 依赖收集(Deps) —— 哪个视图”依赖”了这个数据 ？</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-1-2-1-依赖管理器源码部分："><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">1.1.2.1 依赖管理器源码部分：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-1-2-2-Watcher-类"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">1.1.2.2 Watcher 类</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/21/hello-world/" class="archive-article-date">
-  	<time datetime="2020-07-21T01:07:31.231Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/21/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -325,8 +420,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
