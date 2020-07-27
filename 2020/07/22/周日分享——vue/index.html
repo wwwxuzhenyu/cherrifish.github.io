@@ -49,7 +49,7 @@
 
   
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-coy.css" type="text/css"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -194,8 +194,8 @@
           <br/>
           <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
           <!-- <span class="icon-sort"></span> -->
-          <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
-                    📖 阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+          <span id="busuanzi_container_page_pv" style="color:rgb(110 136 176);font-size:14px;">
+                    📖 阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp; | &nbsp;
           </span>
           </a>
         
@@ -204,11 +204,10 @@
         
           <div style="margin-top:10px;display:inline-block">
     <span class="post-time">
-      &nbsp; | &nbsp;
       <span class="post-meta-item-icon">
         <i class="fa fa-word-o"></i>
-        <span class="post-meta-item-text" style="font-size:14px;color:#ef7522;"> 📄 字数统计: </span>
-        <span class="post-count" style="font-size:14px;color:#ef7522;">8.7k字</span>
+        <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> 📄 字数统计: </span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">8.7k字</span>
       </span>
     </span>
 
@@ -216,8 +215,8 @@
       &nbsp; | &nbsp;
       <span class="post-meta-item-icon">
         <i class="fa fa-clock-o"></i>
-        <span class="post-meta-item-text" style="font-size:14px;color:#ef7522;"> ⏱ 阅读时长: </span>
-        <span class="post-count" style="font-size:14px;color:#ef7522;">36分</span>
+        <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> ⏱ 阅读时长: </span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">36分</span>
       </span>
     </span>
 </div>
@@ -242,7 +241,7 @@
 <p>编译后：<br><img src="CSS_Modules.jpg" alt=""></p>
 <p>综上，React 充分发挥了 JS 的灵活性和复杂性，拥有庞大的生态系统，但同时也带来前期学习曲线陡峭、对开发者不够友好的问题；Vue 能够在内部处理许多繁杂的问题 (比如上面提到的性能优化和 CSS 局部作用域)，前期学习曲线更平缓，但是提供便捷的同时也带来了一些限制。所以在以数据展示为主的项目 (如烟草系统) 中更适合用 Vue 框架，而在业务逻辑更多、要求更高的项目 (如考试系统) 中更适合用 React 框架 (这是我猜的，可能当时选择这两个框架也有别的原因)。</p>
 <h2 id="二、Vue-2-6-11-源码解析-——-深入响应式原理之变化侦测"><a href="#二、Vue-2-6-11-源码解析-——-深入响应式原理之变化侦测" class="headerlink" title="二、Vue 2.6.11 源码解析 —— 深入响应式原理之变化侦测"></a>二、Vue 2.6.11 源码解析 —— 深入响应式原理之变化侦测</h2><p><img src="process.png" alt=""><br>什么是变化侦测？<br>特性：数据驱动视图——输入 state（数据），输出 UI（视图）；UI 随 state 同步变化</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI &#x3D; render(state)</span><br></pre></td></tr></table></figure>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI = render(<span class="keyword">state</span>)</span><br></pre></td></tr></table></figure>
 
 <p>不同的框架有不同的变化侦测机制：Angular 通过脏值检查流程；React 通过对比虚拟 DOM；Vue 的变化侦测机制后面会提到：</p>
 <h3 id="1-Object-的变化侦测"><a href="#1-Object-的变化侦测" class="headerlink" title="1. Object 的变化侦测"></a>1. Object 的变化侦测</h3><h4 id="1-1-使-Object-的属性可观测-——-Object-defineProperty-方法"><a href="#1-1-使-Object-的属性可观测-——-Object-defineProperty-方法" class="headerlink" title="1.1 使 Object 的属性可观测 —— Object.defineProperty 方法"></a>1.1 使 Object 的属性可观测 —— Object.defineProperty 方法</h4><p>作用：直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。通过自定义 Setters 和 Getters 实现对属性变化的追踪。</p>
@@ -732,15 +731,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Web前端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
             
             <div class="clearfix"></div>
