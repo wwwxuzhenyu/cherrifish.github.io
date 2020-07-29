@@ -6,22 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Ros入门21讲踩坑笔记 | 爱吃蒸鱼の猫</title>
+  <title>Ros入门21讲踩坑笔记(1) | 爱吃蒸鱼の猫</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="古月居《Ros 入门21讲》踩坑记录和学习笔记">
+  <meta name="description" content="古月居《Ros 入门21讲》第 1 ~ 9 讲踩坑记录和学习笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ros入门21讲踩坑笔记">
+<meta property="og:title" content="Ros入门21讲踩坑笔记(1)">
 <meta property="og:url" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="爱吃蒸鱼の猫">
-<meta property="og:description" content="古月居《Ros 入门21讲》踩坑记录和学习笔记">
+<meta property="og:description" content="古月居《Ros 入门21讲》第 1 ~ 9 讲踩坑记录和学习笔记">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/soft_config.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/terminal_ros.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/roscore.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/ros_version.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/turtle.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/pubsub.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/file_sys.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/rqt_graph.png">
 <meta property="article:published_time" content="2020-07-28T10:51:28.000Z">
-<meta property="article:modified_time" content="2020-07-28T15:03:08.047Z">
+<meta property="article:modified_time" content="2020-07-29T10:39:55.186Z">
 <meta property="article:author" content="Cherrifish">
 <meta property="article:tag" content="机器人控制">
 <meta property="article:tag" content="Ros">
@@ -175,7 +178,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Ros入门21讲踩坑笔记
+      Ros入门21讲踩坑笔记(1)
     </h1>
   
 
@@ -202,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-word-o"></i>
         <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> 📄 字数统计: </span>
-        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">617字</span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">1.7k字</span>
       </span>
     </span>
 
@@ -211,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-clock-o"></i>
         <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> ⏱ 阅读时长: </span>
-        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">2分</span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">6分</span>
       </span>
     </span>
 </div>
@@ -221,7 +224,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>古月居《Ros 入门21讲》踩坑记录和学习笔记</p>
+        <p>古月居《Ros 入门21讲》第 1 ~ 9 讲踩坑记录和学习笔记</p>
 <a id="more"></a>
 
 <h2 id="一、安装-Ros"><a href="#一、安装-Ros" class="headerlink" title="一、安装 Ros"></a>一、安装 Ros</h2><p>配置软件库，需要前四行打上勾，选择合适的镜像源。<br><img src="soft_config.png" alt=""></p>
@@ -252,6 +255,52 @@
 启动海龟控制节点，在这个终端内部就可以通过方向键控制小海龟运动了。</li>
 </ol>
 <p>至此安装全部完成。</p>
+<h2 id="二、Ros-简介与核心概念"><a href="#二、Ros-简介与核心概念" class="headerlink" title="二、Ros 简介与核心概念"></a>二、Ros 简介与核心概念</h2><h3 id="2-1-什么是-Ros"><a href="#2-1-什么是-Ros" class="headerlink" title="2.1 什么是 Ros"></a>2.1 什么是 Ros</h3><p>全称：机器人操作系统（Robot Operating System）<br>构成：通信机制 (节点) + 工具软件包 + 高级应用功能 + 生态系统<br>笔者认为：Ros 是一套能够将分散的、由不同开发者编写的软件代码打包并统一管理、建立连接的高度灵活的软件框架，提供了大量的工具和基本的硬件底层逻辑，让基于硬件的软件开发更加遍历、为机器人研究和开发提供代码复用的支持。</p>
+<h3 id="2-2-Ros-核心概念"><a href="#2-2-Ros-核心概念" class="headerlink" title="2.2 Ros 核心概念"></a>2.2 Ros 核心概念</h3><ul>
+<li>松耦合的节点通信 —— 节点为执行具体任务的进程、独立运行的可执行文件，可独立使用编程语言、可分布式运行在不同主机；</li>
+<li>话题通信 —— 发布订阅，异步、单向数据流，适用于普通数据传输</li>
+<li>服务通信 —— 一次握手，同步通信，适用于逻辑处理、人机交互<br><img src="pubsub.jpg" alt=""></li>
+<li>参数 —— 每个节点可通过网络访问的全局变量仓库，参数改变时不会通知节点更新，故只适用于存储静态的、非二进制的配置参数</li>
+<li>功能包、功能包清单、元功能包<br><img src="file_sys.png" alt=""></li>
+</ul>
+<h2 id="三、初步使用"><a href="#三、初步使用" class="headerlink" title="三、初步使用"></a>三、初步使用</h2><h3 id="3-1-命令行工具"><a href="#3-1-命令行工具" class="headerlink" title="3.1 命令行工具"></a>3.1 命令行工具</h3><ul>
+<li>roscore：启动 ros master，必须首先运行</li>
+<li>rosrun [功能包名] [节点名] ：运行节点，如<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>rosrun turtlesim turtlesim_node</span><br></pre></td></tr></table></figure></li>
+<li>rqt_graph：显示整个系统的节点通讯图<br><img src="rqt_graph.png" alt=""></li>
+<li>rosnode：显示节点信息，如 rosnode list 显示正在运行的节点数量、查看话题列表，rosnode info [节点名] 显示某个节点的运行情况和信息流</li>
+<li>rostopic：显示话题信息，且通过 rostopic 可以手动发布话题消息，增加 -r 可以循环发布话题，比如：<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rostopic pub -r <span class="number">10</span> /turtle1/cmd_vel geometry_msgs/Twist [<span class="literal">Tab</span> <span class="literal">Tab</span>]</span><br></pre></td></tr></table></figure>
+两下 Tab 键是用于自动补全，-r 10 表示以每秒十次的频率循环发布</li>
+<li>rosmsg show [msg]：查看发布指令的数据结构</li>
+<li>rosservice：显示服务信息，可以通过 rosservice call [服务名] [Tab Tab] 调用发布服务请求</li>
+<li>rosbag：记录话题记录并复现，可用于采集数据便于后续调试。<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 记录数据</span></span><br><span class="line"><span class="comment">// -a 表示记录所有的数据 (-all)</span></span><br><span class="line"><span class="comment">// -O 表示把数据保存成压缩包，名字为 cmd_record.bag</span></span><br><span class="line"><span class="symbol">$</span> rosbag record -a -O cmd_record</span><br><span class="line"></span><br><span class="line"><span class="comment">// 复现数据</span></span><br><span class="line"><span class="comment">// 复现数据并不需要启动键盘控制节点，小海龟就会自己动</span></span><br><span class="line"><span class="symbol">$</span> rosbag play cmd_record.bag</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>注：CTRL + C 可以退出当前正在运行的功能 (如 roscore、循环发布、记录数据等)</p>
+<h3 id="3-2-创建工作空间与功能包"><a href="#3-2-创建工作空间与功能包" class="headerlink" title="3.2 创建工作空间与功能包"></a>3.2 创建工作空间与功能包</h3><p>工作空间（workspace）是一个存放工程开发 相关文件的文件夹，包括：</p>
+<ul>
+<li>src：代码空间（Source Space，放功能包）</li>
+<li>build：编译空间（Build Space，放编译中间件）</li>
+<li>devel：开发空间（Development Space，放编译生成的可执行文件、库、脚本）</li>
+<li>install：安装空间（Install Space，和 devel 有重复）</li>
+</ul>
+<p>创建工作空间与功能包的命令如下：</p>
+<ol>
+<li>在主目录打开终端，依次输入如下命令 (catkin_ws 只是文件夹名称，可自定)<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> catkin_ws</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> catkin_ws</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> src</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> src</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_init_workspace</span></span><br></pre></td></tr></table></figure></li>
+<li>编译需要回到根目录 catkin_ws<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_make</span></span><br></pre></td></tr></table></figure>
+编译后根目录下有 build、devel、src 三个包，产生 install 包还需要运行<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catkin_make <span class="keyword">install</span></span><br></pre></td></tr></table></figure></li>
+<li>创建功能包，使用 catkin_create_pkg <package_name> [depend1] [depend2] [depend3] 指令，注意一定要在 src 目录下创建。如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> src</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_create_pkg test_pkg std_msgs rospy roscpp</span></span><br></pre></td></tr></table></figure>
+创建了 src 和 include 文件夹，分别放置代码和头文件；还创建了 CMakeLists.txt 和 package.xml 文件。下面编译功能包，注意要先回到工作空间根目录再执行：<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_make</span> </span><br></pre></td></tr></table></figure></li>
+<li>如果要运行功能包中的程序，需要先设置环境变量：<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source devel/<span class="built_in">setup</span>.bash</span><br></pre></td></tr></table></figure>
+再运行以下指令检查环境变量：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$ROS_PACKAGE_PATH</span></span><br></pre></td></tr></table></figure>
+如果显示出 src 等路径，说明成功。</li>
+</ol>
+<h3 id="3-3-package-xml-和-CMakeLists-txt"><a href="#3-3-package-xml-和-CMakeLists-txt" class="headerlink" title="3.3 package.xml 和 CMakeLists.txt"></a>3.3 package.xml 和 CMakeLists.txt</h3><p>package.xml 提供功能包的基本信息和依赖信息；如果后面发现有其他依赖包需要添加，可以手动在该文件的相应标签添加上。<br>CMakeLists.txt 描述功能包的编译规则。</p>
 
       
 
@@ -400,7 +449,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装-Ros"><span class="toc-number">1.</span> <span class="toc-text">一、安装 Ros</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装-Ros"><span class="toc-number">1.</span> <span class="toc-text">一、安装 Ros</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Ros-简介与核心概念"><span class="toc-number">2.</span> <span class="toc-text">二、Ros 简介与核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-什么是-Ros"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 什么是 Ros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Ros-核心概念"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Ros 核心概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、初步使用"><span class="toc-number">3.</span> <span class="toc-text">三、初步使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-命令行工具"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 命令行工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-创建工作空间与功能包"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 创建工作空间与功能包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-package-xml-和-CMakeLists-txt"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 package.xml 和 CMakeLists.txt</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
