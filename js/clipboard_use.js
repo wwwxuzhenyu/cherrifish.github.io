@@ -14,7 +14,7 @@ $(".highlight").wrap("<div class='code-wrapper' style='position:relative'></div>
             }
         });
         clipboard.on('success', function(e) {
-            e.trigger.innerHTML = "<i class='fa fa-clipboard'></i><span>复制成功</span>"
+            e.trigger.innerHTML = "<i class='fa fa-clipboard'></i><span>拿走不谢o(*￣▽￣*)ブ</span>"
             setTimeout(function() {
                 e.trigger.innerHTML = "<i class='fa fa-clipboard'></i><span>复制</span>"
             }, 1000)
@@ -22,7 +22,7 @@ $(".highlight").wrap("<div class='code-wrapper' style='position:relative'></div>
             e.clearSelection();
         });
         clipboard.on('error', function(e) {
-            e.trigger.innerHTML = "<i class='fa fa-clipboard'></i><span>复制失败</span>"
+            e.trigger.innerHTML = "<i class='fa fa-clipboard'></i><span>就不给你(￣へ￣)</span>"
             setTimeout(function() {
                 e.trigger.innerHTML = "<i class='fa fa-clipboard'></i><span>复制</span>"
             }, 1000)

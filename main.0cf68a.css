@@ -4171,10 +4171,11 @@ a.pswp__share--download:hover {
     font-weight: 500;
     line-height: 20px;
     color: #d5d5d5;
-    -webkit-transition: opacity .3s ease-in-out;
-    -o-transition: opacity .3s ease-in-out;
-    transition: opacity .3s ease-in-out;
+    -webkit-transition: opacity .1s ease-in-out;
+    -o-transition: opacity .1s ease-in-out;
+    transition: opacity .1s ease-in-out;
     padding: 2px 6px;
+    opacity: 0;
 }
 
 .btn-copy span {
@@ -4184,4 +4185,8 @@ a.pswp__share--download:hover {
 
 .code-wrapper .btn-copy:hover {
     color: #fff;
+}
+
+.highlight:hover .btn-copy {
+    opacity: 1;
 }
