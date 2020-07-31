@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Ros入门21讲踩坑笔记(2) | 爱吃蒸鱼の猫</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="古月居《Ros 入门21讲》第 1 ~ 9 讲踩坑记录和学习笔记">
+  <meta name="description" content="古月居《Ros 入门21讲》第 10 ~ 16 讲踩坑记录和学习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ros入门21讲踩坑笔记(2)">
 <meta property="og:url" content="http://yoursite.com/2020/07/30/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0-2/index.html">
 <meta property="og:site_name" content="爱吃蒸鱼の猫">
-<meta property="og:description" content="古月居《Ros 入门21讲》第 1 ~ 9 讲踩坑记录和学习笔记">
+<meta property="og:description" content="古月居《Ros 入门21讲》第 10 ~ 16 讲踩坑记录和学习笔记">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0-2/learning_topic.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0-2/test_result.png">
 <meta property="article:published_time" content="2020-07-30T00:32:44.000Z">
-<meta property="article:modified_time" content="2020-07-30T14:45:15.092Z">
+<meta property="article:modified_time" content="2020-07-31T08:36:06.940Z">
 <meta property="article:author" content="Cherrifish">
 <meta property="article:tag" content="机器人控制">
 <meta property="article:tag" content="Ros">
@@ -199,7 +199,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-word-o"></i>
         <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> 📄 字数统计: </span>
-        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">2.1k字</span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">3.7k字</span>
       </span>
     </span>
 
@@ -208,7 +208,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-clock-o"></i>
         <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> ⏱ 阅读时长: </span>
-        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">8分</span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">14分</span>
       </span>
     </span>
 </div>
@@ -218,7 +218,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>古月居《Ros 入门21讲》第 1 ~ 9 讲踩坑记录和学习笔记</p>
+        <p>古月居《Ros 入门21讲》第 10 ~ 16 讲踩坑记录和学习笔记</p>
 <a id="more"></a>
 
 <h2 id="一、话题模型-——-发布订阅"><a href="#一、话题模型-——-发布订阅" class="headerlink" title="一、话题模型 —— 发布订阅"></a>一、话题模型 —— 发布订阅</h2><p><img src="learning_topic.png" alt=""></p>
@@ -279,7 +279,60 @@
 <p>首先运行 roscore，roscore 扮演者 “婚姻中介” 的角色，即为两个节点之间完成连接的建立；建立之后即便停止 roscore 也不会影响已经建立好连接的两个节点继续进行通信。<br>然后分别运行 Subscriber 和 Publisher：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rosrun</span> <span class="string">learning_topic person_subscriber</span></span><br><span class="line"><span class="attr">rosrun</span> <span class="string">learning_topic person_publisher</span></span><br></pre></td></tr></table></figure>
 <p>可以看到两边都在打印信息，即使退出 roscore 也不受影响。<br><img src="test_result.png" alt=""></p>
+<h3 id="1-4-C-补充知识"><a href="#1-4-C-补充知识" class="headerlink" title="1.4 C++ 补充知识"></a>1.4 C++ 补充知识</h3><h4 id="1-4-1-命名空间和作用域操作符-‘-’"><a href="#1-4-1-命名空间和作用域操作符-‘-’" class="headerlink" title="1.4.1 命名空间和作用域操作符 ‘::’"></a>1.4.1 命名空间和作用域操作符 ‘::’</h4><p>命名空间 (namespace)：为了防止变量名被重复定义，而将变量的定义放在一个特定的空间中。<br>例如小李和小韩都参与了一个文件管理系统的开发，它们都定义了一个全局变量 fp 用来指明当前打开的文件，将他们的代码整合在一起编译时，很明显编译器会提示 fp 重复定义（Redefinition）错误。这时就需要将他们定义的全局变量 fp 放在不同的命名空间中：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命名空间里面可以包含变量、函数、类、typedef、#define 等，最后由 &#123; &#125; 包围。</span></span><br><span class="line"><span class="keyword">namespace</span> Li&#123;  <span class="comment">//小李的变量定义</span></span><br><span class="line">    FILE fp = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> Han&#123;  <span class="comment">//小韩的变量定义</span></span><br><span class="line">    FILE fp = <span class="literal">NULL</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>作用域操作符 ‘::’ 就是用来读取指定作用域中的变量，如 Li::fp<br>如果使用作用域操作符觉得较繁琐，可以用命名空间的 using 声明，声明之后系统会默认在未指定命名空间的情况下，变量属于 using 声明中指定的命名空间：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Li::fp;</span><br><span class="line">fp = fopen(<span class="string">"one.txt"</span>, <span class="string">"r"</span>);  <span class="comment">//使用小李定义的变量 fp</span></span><br><span class="line">Han :: fp = fopen(<span class="string">"two.txt"</span>, <span class="string">"rb+"</span>);  <span class="comment">//使用小韩定义的变量 fp</span></span><br></pre></td></tr></table></figure>
+<p>using 也可以声明整个命名空间，声明后所有未指定命名空间的变量都默认是被声明的命名空间中的变量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> Li;</span><br><span class="line">fp = fopen(<span class="string">"one.txt"</span>, <span class="string">"r"</span>);  <span class="comment">//使用小李定义的变量 fp</span></span><br><span class="line">Han::fp = fopen(<span class="string">"two.txt"</span>, <span class="string">"rb+"</span>);  <span class="comment">//使用小韩定义的变量 fp</span></span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ol>
+<li>如果将命名空间的 using 声明放在函数内部，此声明仅在函数的作用域内有效，在大型项目中也推荐开发者这么做。如果将其声明在所有函数的外部，则此声明是全局有效的，但是在大型项目中容易引起混乱，增加了命名冲突的风险，故不建议这么做。</li>
+<li>所有 using 声明语句都必须以分号作为结尾。</li>
+<li>头文件中不应包含 using 声明，因为头文件中的代码会被拷贝到所有引用它的程序当中。</li>
+</ol>
+<h4 id="1-4-2-箭头运算符-‘-gt-’、引用和指针"><a href="#1-4-2-箭头运算符-‘-gt-’、引用和指针" class="headerlink" title="1.4.2 箭头运算符 ‘-&gt;’、引用和指针"></a>1.4.2 箭头运算符 ‘-&gt;’、引用和指针</h4><p>箭头运算符的操作 = 解引用 + 成员访问，例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下两个表达式作用相同</span></span><br><span class="line">it -&gt; mem</span><br><span class="line">(*it).mem</span><br></pre></td></tr></table></figure>
+<p>补充：</p>
+<ol>
+<li>‘*’ 为解引用操作符 (对指针解引用会得到其所指对象)，或用于定义指针类型的变量 (如 int *p)</li>
+<li>‘&amp;’ 为取地址操作符 (常用于指针类型变量初始化)，或用于定义引用类型的变量 (如 int &amp;r)</li>
+</ol>
+<p>注意事项：</p>
+<ol>
+<li>定义引用时，程序将引用与其初始值绑定在一起，而非将初始值拷贝给引用。因此引用必须初始化，而指针本身是个对象，可以不初始化 (但是建议初始化所有指针)。</li>
+<li>引用相当于对象的别名但本身并非对象，故不能创建引用的引用。</li>
+<li>引用一旦定义，就无法令其绑定到新的对象，而指针没有这些限制。</li>
+<li>定义空指针的方法：int *p = nullptr(推荐) 或 0 或 NULL(尽量避免)。</li>
+<li>不能将变量直接赋值给指针 (即便其值可能为0)，需要加上取地址符 &amp;。</li>
+<li>除常量引用和 (15.3.2 类型转换与继承) 以外，引用类型和其绑定的数据类型须严格匹配，且不能与字面值或表达式的计算结果绑定在一起。</li>
+<li>除常量指针和 (15.3.2 类型转换与继承) 以外，指针类型和其指向的数据类型须严格匹配。</li>
+</ol>
+<h4 id="1-4-3-值传递、指针传递和引用传递"><a href="#1-4-3-值传递、指针传递和引用传递" class="headerlink" title="1.4.3 值传递、指针传递和引用传递"></a>1.4.3 值传递、指针传递和引用传递</h4><ul>
+<li>值传递：形参是实参的拷贝，其变化不影响实参；</li>
+<li>指针传递：形参是实参的拷贝，但与实参指向同一对象；</li>
+<li>引用传递：形参是实参的别名，对形参的操作就是对实参的操作；</li>
+</ul>
+<p>在 C++ 当中，建议使用引用传递代替指针传递。</p>
+<p>为什么要用引用传递：</p>
+<ul>
+<li>拷贝大的容器类型或类类型的对象比较低效</li>
+<li>有的类类型不支持拷贝操作</li>
+<li>可以通过引用形参返回额外信息 (《C++ Primer 第五版》P189)</li>
+</ul>
+<p><strong>如果想要避免拷贝且函数无须改变引用形参的值，最好将其声明为常量引用</strong></p>
+<h4 id="1-4-4-常量引用"><a href="#1-4-4-常量引用" class="headerlink" title="1.4.4 常量引用"></a>1.4.4 常量引用</h4><p>类比于常量对象不能被修改，常量引用也不能通过引用修改对象的值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">2048</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r1 = i</span><br><span class="line">r1 = <span class="number">1024</span>              <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure>
+<p>C++ 允许给一个常量引用绑定非常量的对象，但不允许给一个非常量的引用绑定一个常量对象。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">2048</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r1 = i      <span class="comment">// 正确</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci = <span class="number">1024</span></span><br><span class="line"><span class="keyword">int</span> &amp;r2 = ci           <span class="comment">// 错误</span></span><br></pre></td></tr></table></figure>
+
+<p>给一个常量引用绑定非常量的对象时，编译器自动做了如下操作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当我们做如下操作</span></span><br><span class="line"><span class="keyword">double</span> dval = <span class="number">20.48</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r1 = dval      </span><br><span class="line"></span><br><span class="line"><span class="comment">// 在编译器内部等同于</span></span><br><span class="line"><span class="keyword">double</span> dval = <span class="number">20.48</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> temp = dval   <span class="comment">// 由双精度浮点数生成一个临时的整型常量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r1 = temp    <span class="comment">// 让 r1 绑定这个临时常量</span></span><br></pre></td></tr></table></figure>
+<p>因此，虽然我们不能通过常量引用修改其所绑定的对象的值，但当这个对象是一个非常量的时候，C++ 允许我们通过其他方式改变它的值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">2048</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> &amp;r1 = i;      <span class="comment">// 常量引用，不允许修改</span></span><br><span class="line">	<span class="keyword">int</span> &amp;r2 = i;            <span class="comment">// 普通引用，允许修改</span></span><br><span class="line">	r1 = <span class="number">1024</span>;              <span class="comment">// 错误，r1 是一个常量引用</span></span><br><span class="line">	r2 = <span class="number">1024</span>;              <span class="comment">// 正确，i 的值被修改为 1024</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; r1 &lt;&lt; <span class="built_in">endl</span>;     <span class="comment">// 1024，说明 r1 引用的对象依然是 i</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中，常量引用和其绑定的对象 i 都是 int 型的，可以看到 r1 始终绑定在变量 i 上，两者同步变化。如果常量引用和其绑定的对象类型不同，则 r1 不会再绑定在 i 上。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> i = <span class="number">20.48</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> &amp;r1 = i;      <span class="comment">// 常量引用，不允许修改</span></span><br><span class="line">	i = <span class="number">10.24</span>;              <span class="comment">// 正确，i 的值被修改为 10.24</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; r1 &lt;&lt; <span class="built_in">endl</span>;     <span class="comment">// 20</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">endl</span>;      <span class="comment">// 10.24</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -427,7 +480,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、话题模型-——-发布订阅"><span class="toc-number">1.</span> <span class="toc-text">一、话题模型 —— 发布订阅</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-发布者-Publisher-的编程实现"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 发布者 Publisher 的编程实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-订阅者-Subscriber-的编程实现"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 订阅者 Subscriber 的编程实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-话题消息的定义与使用"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 话题消息的定义与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-自定义话题消息"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 自定义话题消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-使用自定义话题消息"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 使用自定义话题消息</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、话题模型-——-发布订阅"><span class="toc-number">1.</span> <span class="toc-text">一、话题模型 —— 发布订阅</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-发布者-Publisher-的编程实现"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 发布者 Publisher 的编程实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-订阅者-Subscriber-的编程实现"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 订阅者 Subscriber 的编程实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-话题消息的定义与使用"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 话题消息的定义与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-自定义话题消息"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.3.1 自定义话题消息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-使用自定义话题消息"><span class="toc-number">1.3.2.</span> <span class="toc-text">1.3.2 使用自定义话题消息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-C-补充知识"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 C++ 补充知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-命名空间和作用域操作符-‘-’"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1 命名空间和作用域操作符 ‘::’</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-箭头运算符-‘-gt-’、引用和指针"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.4.2 箭头运算符 ‘-&gt;’、引用和指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-3-值传递、指针传递和引用传递"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.4.3 值传递、指针传递和引用传递</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-4-常量引用"><span class="toc-number">1.4.4.</span> <span class="toc-text">1.4.4 常量引用</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
