@@ -866,7 +866,9 @@ html {
     position: absolute;
     right: 0;
     min-height: 100%;
-    background: rgb(22 12 71 / 80%);
+    background: repeating-linear-gradient(rgb(3, 13, 70) 0%, rgb(22 12 71 / 80%) 250px, rgb(3, 13, 70) 500px);
+    ;
+    /* background: rgb(22 12 71 / 80%); */
     left: 300px;
     width: auto
 }
@@ -2227,7 +2229,6 @@ pre .id {
 
 .article-inner {
     border-color: #d1d1d1;
-    z-index: 999;
 }
 
 .article-inner h1 {
