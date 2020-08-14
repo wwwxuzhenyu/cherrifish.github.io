@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/08/14/CMOS%E7%AC%94%E8%AE%B0-%E7%BB%AA%E8%AE%BA/mermaid.png">
 <meta property="og:image" content="http://yoursite.com/2020/08/14/CMOS%E7%AC%94%E8%AE%B0-%E7%BB%AA%E8%AE%BA/pn.jpg">
 <meta property="article:published_time" content="2020-08-14T01:32:18.000Z">
-<meta property="article:modified_time" content="2020-08-14T12:51:35.836Z">
+<meta property="article:modified_time" content="2020-08-14T13:38:20.969Z">
 <meta property="article:author" content="Cherrifish">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="CMOS">
@@ -64,7 +64,7 @@
 		<p class="header-subtitle" style="font-family: cursive;">&#34;你在期待着什么呢？&#34;</p>
 		
 		<nav style="font-size:14px;color:#86afc2;padding-top:50px">
-			总文章数: 7
+			总文章数: 8
 		</nav>
 		<nav class="header-menu">
 			<ul>
@@ -202,7 +202,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-word-o"></i>
         <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> 📄 字数统计: </span>
-        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">1k字</span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">1.2k字</span>
       </span>
     </span>
 
@@ -211,7 +211,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-clock-o"></i>
         <span class="post-meta-item-text" style="font-size:14px;color:rgb(110 136 176);"> ⏱ 阅读时长: </span>
-        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">3分</span>
+        <span class="post-count" style="font-size:14px;color:rgb(110 136 176);">4分</span>
       </span>
     </span>
 </div>
@@ -252,7 +252,7 @@
 <h3 id="1-4-PN-结知识回顾"><a href="#1-4-PN-结知识回顾" class="headerlink" title="1.4 PN 结知识回顾"></a>1.4 PN 结知识回顾</h3><p><img src="pn.jpg" alt=""></p>
 <h4 id="1-4-1-载流子的扩散与漂移运动"><a href="#1-4-1-载流子的扩散与漂移运动" class="headerlink" title="1.4.1 载流子的扩散与漂移运动"></a>1.4.1 载流子的扩散与漂移运动</h4><ol>
 <li><strong>扩散运动</strong>是由<strong>浓度差</strong>引起的载流子从高浓度向低浓度的定向运动，<strong>漂移运动</strong>是载流子在<strong>电场作用</strong>下的定向运动。</li>
-<li>漂移运动的速度对应载流子的迁移率 μ，扩散运动的速度对应载流子的扩散系数 D。</li>
+<li>漂移运动的速度对应载流子的迁移率 μ，扩散运动的速度对应载流子的扩散系数 D。<strong>自由电子的迁移率大于空穴的迁移率，前者几乎是后者的三倍</strong>。</li>
 </ol>
 <h4 id="1-4-2-PN-结形成的过程"><a href="#1-4-2-PN-结形成的过程" class="headerlink" title="1.4.2 PN 结形成的过程"></a>1.4.2 PN 结形成的过程</h4><ol>
 <li>P 型区的多子为空穴，N 型区的多子为自由电子；由于两者在交界处的浓度差，有一些电子从 N 型区向 P 型区扩散，也有一些空穴从 P 型区向 N 型区扩散；从而 P 型区留下了带负电的杂质离子，N 型区留下了带正电的杂质离子，形成了<strong>空间电荷区 (耗尽区)</strong>。</li>
@@ -261,6 +261,10 @@
 <li>综上，<strong>PN 结可以视为一个由 P 指向 N 的二极管</strong>，实际上二极管也是由 PN 结封装、引线而制成的。</li>
 </ol>
 <p>在后续的学习中，凡是出现了 PN 结的地方都可以将其视作一个近似的二极管。</p>
+<h3 id="1-5-知识点杂记"><a href="#1-5-知识点杂记" class="headerlink" title="1.5 知识点杂记"></a>1.5 知识点杂记</h3><ol>
+<li>什么是 rail to rail ？<br>例如单电源供电，其 Vdd 即为 “上轨”，GND 即为 “下轨”；而 rail to rail 指的就是输入或输出电压的摆幅范围都能够达到甚至是超过电源电压。而在常规放大器中，如果输入信号的幅度接近电源电压的上下限，会发生截止或饱和失真。</li>
+<li>为什么需要 CMOS？<br>数字信号处理需要开关电路，我们希望开关电路在静态时 (维持开或者关) 功耗为 0 。<strong>而 NPN 和 PNP 管 (Bipolar 工艺) 由于是基极电流驱动型的器件，电流驱动器件一定会有静态功耗</strong>。CMOS 器件是电压驱动型的，是可以做到静态功耗为 0 的。</li>
+</ol>
 <h2 id="二、参考文献"><a href="#二、参考文献" class="headerlink" title="二、参考文献"></a>二、参考文献</h2><p><a href="[https://baike.baidu.com/item/PN%E7%BB%93/898090?fr=aladdin](https://baike.baidu.com/item/PN结/898090?fr=aladdin)">PN结-百度百科</a><br><a href="https://baike.baidu.com/item/%E4%BA%8C%E6%9E%81%E7%AE%A1/102466?fr=aladdin" target="_blank" rel="noopener">二极管-百度百科</a><br><a href="https://zhidao.baidu.com/question/472926835.html" target="_blank" rel="noopener">电源二极管PN结，扩散运动与漂移运动的区别</a></p>
 <h2 id="三、后记"><a href="#三、后记" class="headerlink" title="三、后记"></a>三、后记</h2><p>配置了那么久的 mermaid，居然最后渲染出来还有问题……看来 yilia 主题确实有很多地方需要优化，不知道是不是所有的 yilia 主题在配置 mermaid 的时候都会渲染混乱，但是如果做成 next 那么简单，就能省好多事。这个问题暂时先搁置在这了，毕竟以后也有可能切换到 next 主题 (虽然自己整了这么些美化的博客，说换就换还不太舍得)。先把配置 mermaid 的链接放在这，以后有需要再来找。</p>
 <p><a href="https://www.cnblogs.com/icoty23/p/10911231.html" target="_blank" rel="noopener">Hexo引入Mermaid流程图和MathJax数学公式</a></p>
@@ -387,6 +391,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2020/08/14/CMOS%E7%AC%94%E8%AE%B0-MOS%E7%89%A9%E7%90%86%E5%99%A8%E4%BB%B6%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CMOS笔记-MOS物理器件基础
+        
+      </div>
+    </a>
+  
   
     <a href="/2020/08/06/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0-3/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Ros入门21讲踩坑笔记(3)</div>
@@ -416,7 +429,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、绪论"><span class="toc-number">1.</span> <span class="toc-text">一、绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-参考书目"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 参考书目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-准备知识"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 准备知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-电路理论基本知识梳理"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 电路理论基本知识梳理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-PN-结知识回顾"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 PN 结知识回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-载流子的扩散与漂移运动"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1 载流子的扩散与漂移运动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-PN-结形成的过程"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.4.2 PN 结形成的过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、参考文献"><span class="toc-number">2.</span> <span class="toc-text">二、参考文献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、后记"><span class="toc-number">3.</span> <span class="toc-text">三、后记</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、绪论"><span class="toc-number">1.</span> <span class="toc-text">一、绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-参考书目"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 参考书目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-准备知识"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 准备知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-电路理论基本知识梳理"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 电路理论基本知识梳理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-PN-结知识回顾"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 PN 结知识回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-1-载流子的扩散与漂移运动"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1 载流子的扩散与漂移运动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-2-PN-结形成的过程"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.4.2 PN 结形成的过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-知识点杂记"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 知识点杂记</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、参考文献"><span class="toc-number">2.</span> <span class="toc-text">二、参考文献</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、后记"><span class="toc-number">3.</span> <span class="toc-text">三、后记</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -587,6 +600,14 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">IC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CMOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">机器人控制</a>
               </li>
              
@@ -604,14 +625,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">IC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CMOS</a>
               </li>
             
             <div class="clearfix"></div>
