@@ -69,7 +69,7 @@
 		<p class="header-subtitle" style="font-family: cursive;">&#34;你在期待着什么呢？&#34;</p>
 		
 		<nav style="font-size:14px;color:#86afc2;padding-top:50px">
-			总文章数: 8
+			总文章数: 9
 		</nav>
 		<nav class="header-menu">
 			<ul>
@@ -229,7 +229,7 @@
         <p>古月居《Ros 入门21讲》第 1 ~ 9 讲踩坑记录和学习笔记</p>
 <a id="more"></a>
 
-<h2 id="一、安装-Ros"><a href="#一、安装-Ros" class="headerlink" title="一、安装 Ros"></a>一、安装 Ros</h2><p>配置软件库，需要前四行打上勾，选择合适的镜像源。<br><img src="soft_config.png" alt=""></p>
+<h2 id="一、安装-Ros"><a href="#一、安装-Ros" class="headerlink" title="一、安装 Ros"></a>一、安装 Ros</h2><p>配置软件库，需要前四行打上勾，选择合适的镜像源。<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/soft_config.png" alt></p>
 <p>安装过程中建议全程使用手机流量，如使用 WiFi 可能造成部分包下载失败。如果流量不够可以蹭朋友的热点。</p>
 <p>安装步骤如下：<br>依次执行以下命令：  </p>
 <ol>
@@ -246,13 +246,13 @@
 
 </li>
 </ol>
-<p>安装完成以后，在终端输入 ros 并按下 tab 键，可以看到输出的 ros 命令表，初步代表安装成功<br><img src="terminal_ros.png" alt=""></p>
+<p>安装完成以后，在终端输入 ros 并按下 tab 键，可以看到输出的 ros 命令表，初步代表安装成功<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/terminal_ros.png" alt></p>
 <p>接下来进行验证：  </p>
 <ol>
-<li>先在终端输入 roscore 回车，有如下相应：<br><img src="roscore.png" alt=""><br>如果报错 roscore not found，说明最开始安装的时候有些包没有装上，终端输入：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> ros-melodic-roslaunch</span><br></pre></td></tr></table></figure>
-注意：这里我用的是 Ubuntu 18.04，对应的 ros 版本是 melodic，其他版本需要对照下表选择命令：<br><img src="ros_version.png" alt=""><br>再输入 roscore 命令即可。</li>
+<li>先在终端输入 roscore 回车，有如下相应：<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/roscore.png" alt><br>如果报错 roscore not found，说明最开始安装的时候有些包没有装上，终端输入：<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">install</span> ros-melodic-roslaunch</span><br></pre></td></tr></table></figure>
+注意：这里我用的是 Ubuntu 18.04，对应的 ros 版本是 melodic，其他版本需要对照下表选择命令：<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/ros_version.png" alt><br>再输入 roscore 命令即可。</li>
 <li>再新开一个终端，输入：<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>rosrun turtlesim turtlesim_node</span><br></pre></td></tr></table></figure>
-启动小海龟仿真器，应该可以看到蓝色的小海龟的界面<br><img src="turtle.png" alt=""><br>如果报错 package turtlesim not found，说明很可能在安装 ros 的时候没有安装完整。我是切换到了手机热点，然后直接重新从上面的第三步开始，再安装一遍就好了。</li>
+启动小海龟仿真器，应该可以看到蓝色的小海龟的界面<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/turtle.png" alt><br>如果报错 package turtlesim not found，说明很可能在安装 ros 的时候没有安装完整。我是切换到了手机热点，然后直接重新从上面的第三步开始，再安装一遍就好了。</li>
 <li>再新开一个终端，输入：<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>rosrun turtlesim turtle_teleop_key</span><br></pre></td></tr></table></figure>
 启动海龟控制节点，在这个终端内部就可以通过方向键控制小海龟运动了。</li>
 </ol>
@@ -261,14 +261,14 @@
 <h3 id="2-2-Ros-核心概念"><a href="#2-2-Ros-核心概念" class="headerlink" title="2.2 Ros 核心概念"></a>2.2 Ros 核心概念</h3><ul>
 <li>松耦合的节点通信 —— 节点为执行具体任务的进程、独立运行的可执行文件，可独立使用编程语言、可分布式运行在不同主机；</li>
 <li>话题通信 —— 发布订阅，异步、单向数据流，适用于普通数据传输</li>
-<li>服务通信 —— 一次握手，同步通信，适用于逻辑处理、人机交互<br><img src="pubsub.jpg" alt=""></li>
+<li>服务通信 —— 一次握手，同步通信，适用于逻辑处理、人机交互<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/pubsub.jpg" alt></li>
 <li>参数 —— 每个节点可通过网络访问的全局变量仓库，参数改变时不会通知节点更新，故只适用于存储静态的、非二进制的配置参数</li>
-<li>功能包、功能包清单、元功能包<br><img src="file_sys.png" alt=""></li>
+<li>功能包、功能包清单、元功能包<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/file_sys.png" alt></li>
 </ul>
 <h2 id="三、初步使用"><a href="#三、初步使用" class="headerlink" title="三、初步使用"></a>三、初步使用</h2><h3 id="3-1-命令行工具"><a href="#3-1-命令行工具" class="headerlink" title="3.1 命令行工具"></a>3.1 命令行工具</h3><ul>
 <li>roscore：启动 ros master，必须首先运行</li>
 <li>rosrun [功能包名] [节点名] ：运行节点，如<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>rosrun turtlesim turtlesim_node</span><br></pre></td></tr></table></figure></li>
-<li>rqt_graph：显示整个系统的节点通讯图<br><img src="rqt_graph.png" alt=""></li>
+<li>rqt_graph：显示整个系统的节点通讯图<br><img src="/2020/07/28/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0/rqt_graph.png" alt></li>
 <li>rosnode：显示节点信息，如 rosnode list 显示正在运行的节点数量、查看话题列表，rosnode info [节点名] 显示某个节点的运行情况和信息流</li>
 <li>rostopic：显示话题信息，且通过 rostopic 可以手动发布话题消息，增加 -r 可以循环发布话题，比如：<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rostopic pub -r <span class="number">10</span> /turtle1/cmd_vel geometry_msgs/Twist [<span class="literal">Tab</span> <span class="literal">Tab</span>]</span><br></pre></td></tr></table></figure>
 两下 Tab 键是用于自动补全，-r 10 表示以每秒十次的频率循环发布</li>
@@ -297,7 +297,7 @@
 编译后根目录下有 build、devel、src 三个包，产生 install 包还需要运行<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catkin_make <span class="keyword">install</span></span><br></pre></td></tr></table></figure></li>
 <li>创建功能包，使用 catkin_create_pkg <package_name> [depend1] [depend2] [depend3] 指令，注意一定要在 src 目录下创建。如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> src</span><br></pre></td></tr></table></figure>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_create_pkg test_pkg std_msgs rospy roscpp</span></span><br></pre></td></tr></table></figure>
-创建了 src 和 include 文件夹，分别放置代码和头文件；还创建了 CMakeLists.txt 和 package.xml 文件。下面编译功能包，注意要先回到工作空间根目录再执行：<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_make</span> </span><br></pre></td></tr></table></figure></li>
+创建了 src 和 include 文件夹，分别放置代码和头文件；还创建了 CMakeLists.txt 和 package.xml 文件。下面编译功能包，注意要先回到工作空间根目录再执行：<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_make</span> </span><br></pre></td></tr></table></figure></package_name></li>
 <li>如果要运行功能包中的程序，需要先设置环境变量：<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source devel/<span class="built_in">setup</span>.bash</span><br></pre></td></tr></table></figure>
 再运行以下指令检查环境变量：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$ROS_PACKAGE_PATH</span></span><br></pre></td></tr></table></figure>
 如果显示出 src 等路径，说明成功。</li>
@@ -648,6 +648,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -64,7 +64,7 @@
 		<p class="header-subtitle" style="font-family: cursive;">&#34;你在期待着什么呢？&#34;</p>
 		
 		<nav style="font-size:14px;color:#86afc2;padding-top:50px">
-			总文章数: 8
+			总文章数: 9
 		</nav>
 		<nav class="header-menu">
 			<ul>
@@ -229,13 +229,13 @@
 <p>可以看到，在键盘控制一只小海龟运动的时候，另一只会跟着他跑，并且会“抄近道”。</p>
 <p>下面通过一条命令，生成描述当前环境下所有坐标关系的 pdf 文件 (<strong>以后会经常用到</strong>)</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rosrun tf view_frames</span></span><br></pre></td></tr></table></figure>
-<p>可以看到主文件夹多了 frames.pdf 文件，打开可以看到：<br><img src="frames.png" alt=""><br>其中，world 坐标系是全局的坐标系，坐标原点是仿真器的左下角，包含 x 和 y 方向；turtle1 和 turtle2 是位于两只小海龟身上的坐标系。图中 turtle1 和 turtle2 与 world 之间的箭头连线表明这两个坐标系和 world 坐标系是建立起联系的，图中所示即为 tf 树。</p>
+<p>可以看到主文件夹多了 frames.pdf 文件，打开可以看到：<br><img src="/2020/08/06/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0-3/frames.png" alt><br>其中，world 坐标系是全局的坐标系，坐标原点是仿真器的左下角，包含 x 和 y 方向；turtle1 和 turtle2 是位于两只小海龟身上的坐标系。图中 turtle1 和 turtle2 与 world 之间的箭头连线表明这两个坐标系和 world 坐标系是建立起联系的，图中所示即为 tf 树。</p>
 <p>还可以通过 tf_echo 指令获取指定两个坐标系的位置关系：</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun tf tf_<span class="keyword">echo</span> turtle1 turtle2</span><br></pre></td></tr></table></figure>
 <p>运行后，终端会不断跟踪两个坐标系的关系并打印出来，打印的 Translation 字段描述两个坐标系原点的相对位置 (即如何平移才能让两个坐标系的原点重合在一起)，Rotation 字段描述两个坐标系在角度上的相对位置 (即如何旋转才能让两个坐标系的方向重合在一起)。Rotation 字段还用三种不同的方式描述角度的相对位置，一种是四元数 (x,y,z,w)，另一种是弧度描述的 RPY (即围绕 x、y、z 轴需要的旋转角度，这里因为是平面的坐标，所以只有围绕 z 轴的旋转)，还有一种是角度描述的 RPY。</p>
 <p>还可以通过三维可视化平台 Rviz 来直观的看到坐标系之间的关系：</p>
 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun rviz rviz -d `rospack find turtle_tf`/rviz/turtle_rviz.rviz</span><br></pre></td></tr></table></figure>
-<p>打开 rviz 界面后，首先需要把 fixed frame 字段改成 world，表明固定的坐标系是 world 坐标系；然后点击左下角的 Add 按钮，选择 tf，就可以看到平台上多了两个小海龟的位置坐标。通过按键移动其中一只小海龟，可以看到 rviz 界面中的坐标系也在运动。<br><img src="rviz.png" alt=""></p>
+<p>打开 rviz 界面后，首先需要把 fixed frame 字段改成 world，表明固定的坐标系是 world 坐标系；然后点击左下角的 Add 按钮，选择 tf，就可以看到平台上多了两个小海龟的位置坐标。通过按键移动其中一只小海龟，可以看到 rviz 界面中的坐标系也在运动。<br><img src="/2020/08/06/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0-3/rviz.png" alt></p>
 <h2 id="二、tf-坐标系广播与监听的编程实现"><a href="#二、tf-坐标系广播与监听的编程实现" class="headerlink" title="二、tf 坐标系广播与监听的编程实现"></a>二、tf 坐标系广播与监听的编程实现</h2><p>在 catkin_ws/src 目录打开终端，执行创建功能包</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">catkin_create_pkg learning_tf roscpp rospy tf turtlesim</span></span><br></pre></td></tr></table></figure>
 
@@ -320,7 +320,7 @@
 <figure class="highlight xml"><figcaption><span>turtlesim_parameter_config.launch</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"/turtle_number"</span>   <span class="attr">value</span>=<span class="string">"2"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">"turtlesim"</span> <span class="attr">type</span>=<span class="string">"turtlesim_node"</span> <span class="attr">name</span>=<span class="string">"turtlesim_node"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"turtle_name1"</span>   <span class="attr">value</span>=<span class="string">"Tom"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"turtle_name2"</span>   <span class="attr">value</span>=<span class="string">"Jerry"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">file</span>=<span class="string">"$(find learning_launch)/config/param.yaml"</span> <span class="attr">command</span>=<span class="string">"load"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">node</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">node</span> <span class="attr">pkg</span>=<span class="string">"turtlesim"</span> <span class="attr">type</span>=<span class="string">"turtle_teleop_key"</span> <span class="attr">name</span>=<span class="string">"turtle_teleop_key"</span> <span class="attr">output</span>=<span class="string">"screen"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在 <code>&lt;rosparam&gt;</code> 标签中的 file 属性使用了一个系统命令 “find”，其作用为让系统自动寻找 learning_launch 这个功能包，并输出它的路径。<br>下面在 learning_launch 目录下创建 config 目录，创建 param.yaml 文件：</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">A:</span> <span class="number">123</span></span><br><span class="line"><span class="symbol">B:</span> <span class="string">"hello"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">group:</span></span><br><span class="line"><span class="symbol">    C:</span> <span class="number">456</span></span><br><span class="line"><span class="symbol">    D:</span> <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
-<p>在这个 yaml 文件中，就使用了命名空间 group，在存入参数服务器的时候，就会在这个空间下的参数名前面加一个 ‘group/‘ 前缀。命名空间的目的还是为了避免参数名称出现冲突。<br>在终端执行 roslaunch 命令，再通过 rosparam list 命令查看已有的参数列表，如下所示：<br><img src="params.png" alt=""><br>可以看到，在 turtlesim_parameter_config.launch 文件中定义在 <code>&lt;node&gt;</code> 标签下的参数都带上了一个前缀，这个前缀就是 node 的 name 属性。说明嵌套在 <code>&lt;node&gt;</code> 标签内部的属性 (包括从外部 yaml 文件引入的) 都会自动地被放在以节点名为名称的命名空间下。</p>
+<p>在这个 yaml 文件中，就使用了命名空间 group，在存入参数服务器的时候，就会在这个空间下的参数名前面加一个 ‘group/‘ 前缀。命名空间的目的还是为了避免参数名称出现冲突。<br>在终端执行 roslaunch 命令，再通过 rosparam list 命令查看已有的参数列表，如下所示：<br><img src="/2020/08/06/Ros%E5%85%A5%E9%97%A821%E8%AE%B2%E8%B8%A9%E5%9D%91%E7%AC%94%E8%AE%B0-3/params.png" alt><br>可以看到，在 turtlesim_parameter_config.launch 文件中定义在 <code>&lt;node&gt;</code> 标签下的参数都带上了一个前缀，这个前缀就是 node 的 name 属性。说明嵌套在 <code>&lt;node&gt;</code> 标签内部的属性 (包括从外部 yaml 文件引入的) 都会自动地被放在以节点名为名称的命名空间下。</p>
 <h3 id="3-4-通过-remap-修改-topic-名称"><a href="#3-4-通过-remap-修改-topic-名称" class="headerlink" title="3.4 通过 remap 修改 topic 名称"></a>3.4 通过 remap 修改 topic 名称</h3><p>看下面的 launch 文件：</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="built_in">launch</span>&gt;</span><br><span class="line">    &lt;include <span class="built_in">file</span>=<span class="string">"$(find learning_launch)/launch/simple.launch"</span> /&gt;</span><br><span class="line">    &lt;node pkg=<span class="string">"turtlesim"</span> type=<span class="string">"turtlesim_node"</span> <span class="built_in">name</span>=<span class="string">"turtlesim_node"</span>&gt;</span><br><span class="line">        &lt;remap <span class="keyword">from</span>=<span class="string">"/turtle1/cmd_vel"</span> <span class="keyword">to</span>=<span class="string">"/cmd_vel"</span>/&gt;</span><br><span class="line">    &lt;/node&gt;</span><br><span class="line">&lt;/<span class="built_in">launch</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>这里在 turtlesim_node 通过 remap 修改了现有的一个话题的名称，从 “/turtle1/cmd_vel” 改成了 “/cmd_vel”。这个改动可以通过运行 rostopic list 指令查看，可以看到话题列表中，这个话题的名称确实已经改动过了。但是这个改动并不会对在 <code>&lt;include&gt;</code> 标签中通过 simple.launch 引入并启动的节点产生影响，它们还是可以正常地用原来的话题名发布和接收消息的。</p>
@@ -466,11 +466,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/08/14/CMOS%E7%AC%94%E8%AE%B0-MOS%E7%89%A9%E7%90%86%E5%99%A8%E4%BB%B6%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/08/14/CMOS%E7%AC%94%E8%AE%B0-%E7%BB%AA%E8%AE%BA/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          CMOS笔记(2)——MOS物理器件基础
+          CMOS笔记(1)——绪论
         
       </div>
     </a>
@@ -692,6 +692,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数学建模</a>
               </li>
              
               <li class="article-tag-list-item">
